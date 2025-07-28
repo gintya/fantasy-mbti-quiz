@@ -1,21 +1,67 @@
-<!-- templates/quiz_20.html -->
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-    <title>MBTI 診断</title>
+    <meta charset="UTF-8">
+    <title>MBTI 診断の旅路</title>
+    <style>
+        body {
+            background-image: url("https://images.unsplash.com/photo-1526318472351-bc6fd1d7ed8b");
+            background-size: cover;
+            color: #f0e6d2;
+            font-family: 'Cinzel', serif;
+            padding: 2rem;
+        }
+
+        .question-box {
+            background-color: rgba(30, 20, 10, 0.85);
+            border: 2px solid #caa472;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 10px #a88f65;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .submit-button {
+            background-color: #caa472;
+            color: #2a1f14;
+            padding: 0.7rem 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        h1 {
+            text-shadow: 2px 2px #000;
+        }
+    </style>
 </head>
 <body>
-    <h1>MBTI 診断（ファンタジー版）</h1>
+    <h1>🧭 性格を映す魔法の鏡：MBTIの旅路</h1>
+    <p>あなたは魔法の世界で、己の性格と向き合う運命の旅に出ました。<br>問いに答えるごとに、あなたの本質が明らかになっていきます。</p>
+
     <form method="POST" action="/result">
         {% for q in questions %}
-            <div>
-                <p>{{ loop.index }}. {{ q.text }}</p>
-                <label><input type="radio" name="{{ q.id }}" value="{{ q.options[0] }}" required> {{ q.labels[0] }}</label><br>
-                <label><input type="radio" name="{{ q.id }}" value="{{ q.options[1] }}"> {{ q.labels[1] }}</label>
+            <div class="question-box">
+                <p><strong>第{{ loop.index }}問:</strong> {{ q.text }}</p>
+                <label>
+                    <input type="radio" name="{{ q.id }}" value="{{ q.options[0] }}" required>
+                    {{ q.labels[0] }}
+                </label><br>
+                <label>
+                    <input type="radio" name="{{ q.id }}" value="{{ q.options[1] }}">
+                    {{ q.labels[1] }}
+                </label>
             </div>
-            <hr>
         {% endfor %}
-        <button type="submit">診断する</button>
+        <button type="submit" class="submit-button">🔮 運命を知る</button>
     </form>
 </body>
 </html>
