@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>第{{ question.id }}の試練</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="fantasy">
+  <div class="container">
+    <h2>試練 {{ question.id }}：</h2>
+    <p>{{ question.text }}</p>
+    <form method="post">
+      {% for option in question.options %}
+        <button class="btn" type="submit" name="answer" value="{{ option[0] }}">{{ option[1] }}</button>
+      {% endfor %}
+    </form>
+  </div>
+</body>
+</html>
