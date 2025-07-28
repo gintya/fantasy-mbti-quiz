@@ -1,0 +1,44 @@
+body.fantasy {
+  background: linear-gradient(#1a1a2e, #16213e);
+  color: #e0e0e0;
+  font-family: 'Georgia', serif;
+  text-align: center;
+  padding: 2rem;
+}
+
+.container {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 0 20px #00f0ff;
+}
+
+h1, h2 {
+  color: #ffdf6c;
+}
+
+.btn {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.8rem 1.6rem;
+  background: #6c5ce7;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #4834d4;
+}
+
+.result h2 {
+  font-size: 2.5rem;
+  color: #00f0ff;
+}
