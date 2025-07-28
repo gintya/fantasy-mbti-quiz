@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import random
 import os
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)  # セッション用の秘密鍵（本番では固定値に）
 
 # 100問の質問データを自動生成
 questions = []
@@ -20,11 +21,7 @@ for i in range(100):
         "options": [base[1], base[2]]
     })
 
-# 回答保存
-responses = {}
-
 def calculate_mbti(responses):
-    # 簡易MBTI判定ロジック（仮）
     counts = {"E": 0, "I": 0, "S": 0, "N": 0, "T": 0, "F": 0, "J": 0, "P": 0}
     for qid, answer in responses.items():
         if int(qid) % 4 == 0:
@@ -49,13 +46,20 @@ def calculate_mbti(responses):
 
 @app.route("/")
 def index():
+    session.clear()  # 新規セッションスタートで回答リセット
     return render_template("index.html")
 
 @app.route("/quiz/<int:qid>", methods=["GET", "POST"])
 def quiz(qid):
+    if "responses" not in session:
+        session["responses"] = {}
+
     if request.method == "POST":
         answer = request.form.get("answer")
+        responses = session["responses"]
         responses[str(qid)] = answer
+        session["responses"] = responses
+
         if qid < len(questions):
             return redirect(url_for("quiz", qid=qid+1))
         else:
@@ -66,9 +70,11 @@ def quiz(qid):
 
 @app.route("/result")
 def result():
+    responses = session.get("responses", {})
     mbti = calculate_mbti(responses)
     return render_template("result.html", mbti=mbti)
 
-# 環境依存性の低いサーバ起動方式（エラー回避のため Flask CLI を推奨）
+# Flask CLIで起動する想定なので app.run() はなし
 if __name__ == "__main__":
-    print("Flaskアプリの起動は、flask run を使ってください。例: FLASK_APP=this_file.py flask run")
+    print("Flaskアプリの起動は、flask run を使ってください。例: FLASK_APP=app.py flask run")
+
