@@ -1,0 +1,21 @@
+<!-- templates/quiz_20.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MBTI 診断</title>
+</head>
+<body>
+    <h1>MBTI 診断（ファンタジー版）</h1>
+    <form method="POST" action="/result">
+        {% for q in questions %}
+            <div>
+                <p>{{ loop.index }}. {{ q.text }}</p>
+                <label><input type="radio" name="{{ q.id }}" value="{{ q.options[0] }}" required> {{ q.labels[0] }}</label><br>
+                <label><input type="radio" name="{{ q.id }}" value="{{ q.options[1] }}"> {{ q.labels[1] }}</label>
+            </div>
+            <hr>
+        {% endfor %}
+        <button type="submit">診断する</button>
+    </form>
+</body>
+</html>
