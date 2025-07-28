@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>MBTIファンタジー診断</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="fantasy">
+  <div class="container">
+    <h1>運命のMBTI診断</h1>
+    <p>あなたの本当のタイプは、どの魔法使いの系譜なのか…？</p>
+    <a class="btn" href="{{ url_for('quiz', qid=1) }}">診断を始める</a>
+  </div>
+</body>
+</html>
