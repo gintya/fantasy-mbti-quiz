@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>診断結果</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="fantasy">
+  <div class="container">
+    <h1>あなたの魔法タイプは...</h1>
+    <div class="result">
+      <h2>{{ mbti }}</h2>
+      <p>あなたは神秘なる森に住まう「{{ mbti }}型」の魔導士です。</p>
+    </div>
+    <a class="btn" href="{{ url_for('index') }}">もう一度診断</a>
+  </div>
+</body>
+</html>
