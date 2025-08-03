@@ -1,18 +1,44 @@
+<!-- templates/result.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>診断結果</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8" />
+<title>あなたの魔法タイプ診断結果</title>
+<style>
+    body {
+        background-color: #1a1a1a;
+        color: #f0e6d2;
+        font-family: 'Cinzel', serif;
+        padding: 2rem;
+        text-align: center;
+    }
+    .result-box {
+        background-color: rgba(30, 20, 10, 0.85);
+        border: 2px solid #caa472;
+        border-radius: 12px;
+        padding: 2rem;
+        display: inline-block;
+        box-shadow: 0 0 20px #a88f65;
+    }
+    h1 {
+        margin-bottom: 1rem;
+    }
+    .mbti-code {
+        font-size: 4rem;
+        font-weight: bold;
+        color: #caa472;
+        margin: 1rem 0;
+        letter-spacing: 1rem;
+        font-family: 'Cinzel Decorative', serif;
+    }
+</style>
 </head>
-<body class="fantasy">
-  <div class="container">
-    <h1>あなたの魔法タイプは...</h1>
-    <div class="result">
-      <h2>{{ mbti }}</h2>
-      <p>あなたは神秘なる森に住まう「{{ mbti }}型」の魔導士です。</p>
+<body>
+    <div class="result-box">
+        <h1>あなたの魔法タイプは…</h1>
+        <div class="mbti-code">{{ result }}</div>
+        <p>あなたは神秘なる森に住まう「型」の魔導士です。</p>
+        <!-- ここにMBTIタイプ別の説明を追加できます -->
     </div>
-    <a class="btn" href="{{ url_for('index') }}">もう一度診断</a>
-  </div>
 </body>
 </html>
